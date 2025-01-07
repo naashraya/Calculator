@@ -44,3 +44,11 @@
 .control .teal:hover{
     background: #006660;
 }
+
+@media screen and (max-width: 768px) {
+    .calculator{
+        width: 100vw;
+        height: 100vh;
+        margin: auto;
+    }
+}

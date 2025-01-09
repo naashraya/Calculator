@@ -8,22 +8,47 @@ let symbol = '';
 let result = '';
 
 const calculate = () =>{
-    // firstValue = parseFloat(firstValue);
-    // secondValue = parseFloat(secondValue);
-//new line of code
+  
     firstValue = firstValue ? parseFloat(firstValue) : 0;
     secondValue = secondValue ? parseFloat(secondValue) : 0;
+
+    try {
+        let expression = display.innerText.replace('X', '*').replace('÷', '/');
+        
+        if (isParenthesesBalanced(expression)) {
+            
+            result = eval(expression);
+
+            display.innerText = result; 
+        } else {
+            display.innerText = 'Error'; 
+        }
+    } catch (e) {
+        display.innerText = 'Error'; 
+    }
 
         if (symbol == '+') result = firstValue + secondValue;
         if (symbol == '-') result = firstValue - secondValue;
         if (symbol == 'X') result = firstValue * secondValue;
         if (symbol == '÷') result = firstValue / secondValue;
         if (symbol == '%') result = firstValue % secondValue;
+        if (symbol == '(') {
+
+        }
     
     display.innerText = result;
     firstValue = result.toString();
     secondValue = '';
     symbol = '';
+};
+
+const isParenthesesBalanced = (expression) => {
+    let openCount = 0;
+    for (let char of expression) {
+        if (char === '(') openCount++;
+        if (char === ')') openCount--;
+    }
+    return openCount === 0; // If openCount is 0, parentheses are balanced
 };
 
 const ClearCalculator = () =>{

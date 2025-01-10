@@ -32,8 +32,9 @@ const calculate = () =>{
         if (symbol == 'X') result = firstValue * secondValue;
         if (symbol == '÷') result = firstValue / secondValue;
         if (symbol == '%') result = firstValue % secondValue;
-        if (symbol == '(') {
 
+        if (!isNaN(result)) {
+            result = parseFloat(result.toFixed(2));
         }
     
     display.innerText = result;
@@ -80,6 +81,7 @@ for (let button of controlButtons) {
             }
             symbol = btnValue;
         }
+        
         else if (!symbol) firstValue += btnValue;
         else if (symbol)secondValue += btnValue;
         
